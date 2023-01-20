@@ -8,7 +8,11 @@ let xMove = 1;
 let yMove = 1;
 let corners = 0;
 
+document.getElementById("stop").disabled = true;
+
 document.getElementById("start").onclick = function(){
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = false;
     let width = Number(document.getElementById("width").value);
     let height = Number(document.getElementById("height").value);
     canvas.width = width;
@@ -35,6 +39,11 @@ document.getElementById("start").onclick = function(){
         x += xMove;
         y += yMove;
     }, 10);
+}
+
+document.getElementById("stop").onclick = function(){
+    document.getElementById("start").disabled = false;
+    document.getElementById("stop").disabled = true;
 }
 
 let colorsAvailable = ["dvd-red", "dvd-yellow", "dvd-green", "dvd-cyan", "dvd-blue", "dvd-magenta"];
