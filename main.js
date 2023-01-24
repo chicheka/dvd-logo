@@ -1,5 +1,6 @@
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
+
 let dvd = document.getElementById("dvd");
 
 let x = 1;
@@ -11,6 +12,7 @@ let corners = 0;
 document.getElementById("stop").disabled = true;
 
 document.getElementById("start").onclick = function(){
+    document.getElementById("corners").innerHTML = "corners hit: " + corners;
     document.getElementById("start").disabled = true;
     document.getElementById("stop").disabled = false;
     let width = Number(document.getElementById("width").value);
@@ -18,7 +20,7 @@ document.getElementById("start").onclick = function(){
     canvas.width = width;
     canvas.height = height;
 
-    setInterval(function(){
+    let idOfDvd = setInterval(function(){
         context.fillStyle = "#000000";
         context.fillRect(0, 0, width, height);
         context.drawImage(dvd, x, y);
@@ -38,12 +40,21 @@ document.getElementById("start").onclick = function(){
         }
         x += xMove;
         y += yMove;
-    }, 10);
-}
 
-document.getElementById("stop").onclick = function(){
-    document.getElementById("start").disabled = false;
-    document.getElementById("stop").disabled = true;
+        document.getElementById("stop").onclick = function(){
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+            context.fillStyle = "#000000";
+            context.fillRect(0, 0, width, height);
+            clearInterval(idOfDvd);
+            x = 1;
+            y = 1;
+            xMove = 1;
+            yMove = 1;
+            corners = 0;
+            dvd = document.getElementById("dvd");
+        }
+    }, 10);
 }
 
 let colorsAvailable = ["dvd-red", "dvd-yellow", "dvd-green", "dvd-cyan", "dvd-blue", "dvd-magenta"];

@@ -1,0 +1,15 @@
+html {
+}
+
+.title-div {
+    width:100%;
+    text-align: center;
+    font-size: 48px;
+}
+
+.canvaswrap {
+    width:100%;
+}
+.canvaswrap canvas {
+    margin:auto;
+}
